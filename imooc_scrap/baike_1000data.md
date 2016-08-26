@@ -2,7 +2,7 @@
 
 ------
 
-练手项目，一个简单的python爬虫，从百度百科页面：入口页面为[王宝强][1]，爬取关于王宝强的1000条数据。
+一个简单的python爬虫，从百度百科页面：入口页面为[王宝强][1]，爬取关于王宝强的1000条数据。
 
 
 ----------
@@ -47,8 +47,6 @@ import html_downloader
 import html_outputer
 import html_parser
 import url_manager
-
-
 class SpiderMain():
     def __init__(self):
         self.urls = url_manager.UrlManager()#url 管理器
@@ -83,9 +81,6 @@ class SpiderMain():
                 print 'craw failed'
         # 最后输出收集好的数据
         self.outputer.output_html()
-
-
-
 #主函数入口
 if __name__=="__main__":
     root_url = "http://baike.baidu.com/item/%E7%8E%8B%E5%AE%9D%E5%BC%BA/40464"
@@ -93,7 +88,9 @@ if __name__=="__main__":
     obj_spider = SpiderMain()
 
 ```
+
 > * url 管理器，管理还未爬取和已经爬取url
+
 ```python
 #coding:utf-8
 #ｕｒｌ管理器
@@ -129,7 +126,9 @@ class UrlManager(object):
         self.old_urls.add(new_url)
 
 ```
+
 > * url下载器：url管理器将待爬取的url传送给网页下载器，进行下载，然后以字符串的形式传递给网页解析器进行解析。
+
 ```python
 #coding:utf-8
 #下载器
@@ -148,15 +147,16 @@ class HtmlDownloader(object):
         #读取成功，返回内容
         return response.read()
 ```
+
 > * 解析器，将需要的内容进行解析：
 解析的过程需要分析，利用浏览器的查看元素功能查看对应内容的格式进行解析：
 这里使用了BeautifulSoup 框架,解析器使用的是：html.parser
+
 ```python
 #coding:utf-8
 import re
 import urlparse
 from bs4 import BeautifulSoup
-
 
 class HtmlParser(object):
     def parse(self, page_url, html_cont):
@@ -216,7 +216,9 @@ class HtmlParser(object):
         res_data['url'] = page_url
 
 ```
+
 > * 输出器，将解析好的内容以指定的形式输入到指定的文件：
+
 ```python
 #coding:utf-8
 #ｈｔｍｌ输出器
@@ -253,6 +255,7 @@ class HtmlOutputer(object):
 ```
 
 ## 输出文件预览 ##
+
 <table><tr><td>http://baike.baidu.com/item/%E7%8E%8B%E5%AE%9D%E5%BC%BA/40464</td><td>王宝强</td><td>
 王宝强，1984年5月29日出生于河北省邢台市，中国内地男演员、导演。王宝强6岁开始练习武术，8岁在嵩山少林寺做俗家弟子。2003年，凭借剧情片《盲井》获得第40届台湾电影金马奖最佳新演员奖[1-2] 
 。2004年，因参演冯小刚执导的剧情片《天下无贼》而获得关注。2008年，凭借《士兵突击》中许三多一角获得第24届中国电视金鹰奖最具人气男演员奖以及观众喜爱的电视剧男演员奖[3-4] 
