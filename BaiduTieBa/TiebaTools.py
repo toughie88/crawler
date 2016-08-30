@@ -14,7 +14,7 @@ class TiebaTools:
     replaceBR = re.compile('<br>.*?<br>|<br>')
 
     #将其余标签剔除
-    removeExtraTag = ｀｀re.compile('<.*?>')
+    removeExtraTag = re.compile('<.*?>')
     def replace(self,x):
         x = re.sub(self.replaceTD,"\t",x)
         x = re.sub(self.replacePara,"\n　　",x)
